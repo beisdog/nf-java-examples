@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class PasswordValidatorTest {
 
     @ParameterizedTest
-    @ValueSource(strings = {"short","nonumberinthis","12345678","DavidIstToll1"})
+    @ValueSource(strings = { "short", "nonumberinthis", "12345678", "DavidIstToll1" })
     public void testPasswordInvalid(String password) {
         String message = PasswordValidator.validatePasswordAndGetMessage(password);
         System.out.println(String.format("'%s' validates to: %s", password, message));
@@ -15,7 +15,7 @@ public class PasswordValidatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"DavidIstToll1%","Wr89434kj?=)"})
+    @ValueSource(strings = { "DavidIstToll1%", "Wr89434kj?=)" })
     public void testPasswordValid(String password) {
         String message = PasswordValidator.validatePasswordAndGetMessage(password);
         System.out.println(String.format("'%s' validates to: %s", password, message));
