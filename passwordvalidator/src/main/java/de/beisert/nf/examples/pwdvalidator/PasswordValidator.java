@@ -1,5 +1,10 @@
 package de.beisert.nf.examples.pwdvalidator;
 
+import java.util.Scanner;
+
+/**
+ * Utility that validates a password if it satisfies some requirements.
+ */
 public class PasswordValidator {
 
     private static final String ERROR_PLEASE_PROVIDE_A_PASSWORD = "Error: Please provide a password. ";
@@ -11,6 +16,23 @@ public class PasswordValidator {
     public static String MESSAGE_VALID = "Valid";
     public static int MINIMUM_LENGTH = 8;
     public static String SPECIAL_CHARS = "{}'\"+*%&/()=?`!¨£$_-:.;,<>";
+
+    public static void main(String[] args) {
+        System.out.println("Please enter a password you want to validate and press enter.");
+        System.out.println("to exit type: quit");
+
+        Scanner scanner = new Scanner(System.in);
+        String line = null;
+        do {
+            line = scanner.nextLine();
+            if (line.trim().equalsIgnoreCase("quit")) {
+                System.out.println("Exit");
+                System.exit(0);
+            } else {
+                System.out.println(validatePasswordAndGetMessage(line));
+            }
+        } while (line != null);
+    }
 
     public static String validatePasswordAndGetMessage(String password) {
         String message = "";
@@ -62,7 +84,10 @@ public class PasswordValidator {
         return lowercase && uppercase;
     }
 
-    public static boolean validatePasswordContainsSpecialChar(String password, char[] specialChars) {
+    public static boolean validatePasswordContainsSpecialChar(
+            String password,
+            char[] specialChars
+    ) {
         for (char c : password.toCharArray()) {
             for (char specialchar : specialChars) {
                 if (c == specialchar) {
